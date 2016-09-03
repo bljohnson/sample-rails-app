@@ -12,14 +12,18 @@ class ArticlesController < ApplicationController
 	end
 
 	def new
+		@article = Article.new
 	end
 
 	# use Article model to save data in db
 	def create
-	  @article = Article.new(article_params)
+		@article = Article.new(article_params)
 
-	  @article.save
-	  redirect_to @article
+		if @article.save
+			redirect_to @article
+		else
+			render 'new'
+		end
 	end
 
 	 # allow and require the title and text parameters for valid use of create. factored out into own method so can be reused by multiple actions in same controller. often made private to make sure it can't be called outside its intended context
