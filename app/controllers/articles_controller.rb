@@ -40,6 +40,13 @@ class ArticlesController < ApplicationController
 		end
 	end
 
+	def destroy
+		@article = Article.find(params[:id])
+		@article.destroy
+		
+		redirect_to articles_path
+	end
+
 	 # allow and require the title and text parameters for valid use of create. factored out into own method so can be reused by multiple actions in same controller. often made private to make sure it can't be called outside its intended context
 	private
 	  def article_params
