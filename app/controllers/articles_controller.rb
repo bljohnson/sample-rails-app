@@ -1,6 +1,11 @@
 # a controller is a class defined to inherit from ApplicationController. Inside class you define methods that become actions for this controller. Actions perform CRUD operations on articles within system.
 # frequent practice is to place CRUD actions in each controller in following order: index, show, new, edit, create, update, and destroy. Public methods must be placed before private or protected methods in controller in order to work.
 class ArticlesController < ApplicationController
+	# list all articles created
+	def index
+		@articles = Article.all
+	end
+
 	def show
 		# find article we're interested in, and get :id parameter from request. use an instance variable (prefixed with @) to hold a reference to article object. Rails will pass all instance variables to the view
 		@article = Article.find(params[:id])
