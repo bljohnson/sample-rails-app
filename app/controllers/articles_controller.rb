@@ -1,6 +1,10 @@
 # a controller is a class defined to inherit from ApplicationController. Inside class you define methods that become actions for this controller. Actions perform CRUD operations on articles within system.
 # frequent practice is to place CRUD actions in each controller in following order: index, show, new, edit, create, update, and destroy. Public methods must be placed before private or protected methods in controller in order to work.
 class ArticlesController < ApplicationController
+
+	# simple http auth system - user must be authenticated on every action except index and show. obviously not very secure
+	http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show]
+
 	# list all articles created
 	def index
 		@articles = Article.all
@@ -43,7 +47,7 @@ class ArticlesController < ApplicationController
 	def destroy
 		@article = Article.find(params[:id])
 		@article.destroy
-		
+
 		redirect_to articles_path
 	end
 
