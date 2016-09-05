@@ -8,35 +8,13 @@
 	<%= @article.text %>
 </p>
 
-<!-- show comment -->
+<!-- render the partial in app/views/comments/_comment.html.erb once for each comment that is in the @article.comments collection -->
 <h2>Comments</h2>
-<% @article.comments.each do |comment| %>
-<p>
-	<strong>Commenter:</strong>
-	<%= comment.commenter %>
-</p>
+<%= render @article.comments %>
 
-<p>
-	<strong>Comment:</strong>
-	<%= comment.body %>
-</p>
-<% end %>
-
-<!-- adds form on Article show page that creates a new comment -->
+<!-- render the partial in app/views/comments/_form.html.erb -->
 <h2>Add a comment:</h2>
-<%= form_for([@article, @article.comments.build]) do |f| %>
-<p>
-	<%= f.label :commenter %><br>
-	<%= f.text_field :commenter %>
-</p>
-<p>
-	<%= f.label :body %><br>
-	<%= f.text_area :body %>
-</p>
-<p>
-	<%= f.submit %>
-</p>
-<% end %>
+<%= render 'comments/form' %>
 
 <%= link_to 'Edit', edit_article_path(@article) %> |
 <!-- link to go back to index action so people viewing a single article can go back and view all -->
