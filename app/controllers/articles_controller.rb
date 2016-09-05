@@ -3,7 +3,7 @@
 class ArticlesController < ApplicationController
 
 	# simple http auth system - user must be authenticated on every action except index and show. obviously not very secure
-	http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show]
+	http_basic_authenticate_with name: "username", password: "secret", except: [:index, :show]
 
 	# list all articles created
 	def index
